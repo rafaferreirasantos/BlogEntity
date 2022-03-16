@@ -31,6 +31,9 @@ namespace Blog
 
                 foreach (Post post in GetPosts(ctx))
                     Console.WriteLine($"  {post}");
+
+                foreach (PostWithTagCount pWT in ctx.PostsWithTagCount!)
+                    Console.WriteLine($"  {pWT}");
                 // Post post = new Post()
                 // {
                 //     Author = user,
