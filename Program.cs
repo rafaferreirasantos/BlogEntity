@@ -29,7 +29,7 @@ namespace Blog
                 foreach (Role role in user.Roles!)
                     Console.WriteLine($"  {role}");
 
-                foreach (Post post in user.Posts!)
+                foreach (Post post in GetPosts(ctx))
                     Console.WriteLine($"  {post}");
                 // Post post = new Post()
                 // {
@@ -48,6 +48,14 @@ namespace Blog
                 // ctx.Posts.Add(post);
                 // ctx.SaveChanges();
             }
+        }
+        private static List<Post> GetPosts(BlogDataContext ctx, int skip = 0, int take = 10)
+        {
+            return ctx.Posts!
+                .AsNoTracking()
+                .Skip(skip)
+                .Take(take)
+                .ToList();
         }
     }
 }
