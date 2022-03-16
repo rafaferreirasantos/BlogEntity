@@ -22,7 +22,8 @@ namespace Blog
                 // ctx.SaveChanges();
                 var user = ctx.Users!
                     .Include(x => x.Roles)
-                    .Include(x => x.Posts)
+                    .Include(x => x.Posts!)
+                    .ThenInclude(x => x.Category)
                     .First(x => x.Slug == "mc-kaka");
                 Console.WriteLine(user);
                 foreach (Role role in user.Roles!)
